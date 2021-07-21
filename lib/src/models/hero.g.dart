@@ -1,7 +1,5 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-// ignore_for_file: implicit_dynamic_parameter
-
 part of 'hero.dart';
 
 // **************************************************************************
@@ -9,132 +7,156 @@ part of 'hero.dart';
 // **************************************************************************
 
 _$_Hero _$_$_HeroFromJson(Map<String, dynamic> json) {
-  return $checkedNew(r'_$_Hero', json, () {
-    final val = _$_Hero(
-      id: $checkedConvert(json, 'id', (v) => v as int),
-      name: $checkedConvert(json, 'name', (v) => v as String),
-      displayName: $checkedConvert(json, 'displayName', (v) => v as String),
-      shortName: $checkedConvert(json, 'shortName', (v) => v as String),
-      abilities: $checkedConvert(
-          json,
-          'abilities',
-          (v) => (v as List<dynamic>)
-              .map((e) => Ability.fromJson(e as Map<String, dynamic>))
-              .toList()),
-      roles: $checkedConvert(
-          json,
-          'roles',
-          (v) => (v as List<dynamic>)
-              .map((e) => Role.fromJson(e as Map<String, dynamic>))
-              .toList()),
-      talents: $checkedConvert(
-          json,
-          'talents',
-          (v) => (v as List<dynamic>)
-              .map((e) => Talent.fromJson(e as Map<String, dynamic>))
-              .toList()),
-      stat: $checkedConvert(
-          json, 'stat', (v) => Stat.fromJson(v as Map<String, dynamic>)),
-      language: $checkedConvert(json, 'language',
-          (v) => Language.fromJson(v as Map<String, dynamic>)),
-      aliases: $checkedConvert(json, 'aliases',
-          (v) => (v as List<dynamic>).map((e) => e as String).toList()),
-    );
-    return val;
-  });
+  return _$_Hero(
+    id: json['id'] as int,
+    name: json['name'] as String,
+    displayName: json['displayName'] as String,
+    shortName: json['shortName'] as String,
+    abilities: (json['abilities'] as List<dynamic>)
+        .map((e) => Ability.fromJson(e as Map<String, dynamic>))
+        .toList(),
+    roles: (json['roles'] as List<dynamic>)
+        .map((e) => Role.fromJson(e as Map<String, dynamic>))
+        .toList(),
+    talents: (json['talents'] as List<dynamic>)
+        .map((e) => Talent.fromJson(e as Map<String, dynamic>))
+        .toList(),
+    stat: Stat.fromJson(json['stat'] as Map<String, dynamic>),
+    language: Language.fromJson(json['language'] as Map<String, dynamic>),
+    aliases:
+        (json['aliases'] as List<dynamic>).map((e) => e as String).toList(),
+  );
 }
+
+Map<String, dynamic> _$_$_HeroToJson(_$_Hero instance) => <String, dynamic>{
+      'id': instance.id,
+      'name': instance.name,
+      'displayName': instance.displayName,
+      'shortName': instance.shortName,
+      'abilities': instance.abilities.map((e) => e.toJson()).toList(),
+      'roles': instance.roles.map((e) => e.toJson()).toList(),
+      'talents': instance.talents.map((e) => e.toJson()).toList(),
+      'stat': instance.stat.toJson(),
+      'language': instance.language.toJson(),
+      'aliases': instance.aliases,
+    };
 
 _$_Ability _$_$_AbilityFromJson(Map<String, dynamic> json) {
-  return $checkedNew(r'_$_Ability', json, () {
-    final val = _$_Ability(
-      slot: $checkedConvert(json, 'slot', (v) => v as int),
-      abilityId: $checkedConvert(json, 'abilityId', (v) => v as int),
-    );
-    return val;
-  });
+  return _$_Ability(
+    slot: json['slot'] as int,
+    abilityId: json['abilityId'] as int,
+  );
 }
+
+Map<String, dynamic> _$_$_AbilityToJson(_$_Ability instance) =>
+    <String, dynamic>{
+      'slot': instance.slot,
+      'abilityId': instance.abilityId,
+    };
 
 _$_Language _$_$_LanguageFromJson(Map<String, dynamic> json) {
-  return $checkedNew(r'_$_Language', json, () {
-    final val = _$_Language(
-      heroId: $checkedConvert(json, 'heroId', (v) => v as int),
-      gameVersionId: $checkedConvert(json, 'gameVersionId', (v) => v as int),
-      languageId: $checkedConvert(json, 'languageId', (v) => v as int),
-      displayName: $checkedConvert(json, 'displayName', (v) => v as String),
-      bio: $checkedConvert(json, 'bio', (v) => v as String),
-      hype: $checkedConvert(json, 'hype', (v) => v as String),
-    );
-    return val;
-  });
+  return _$_Language(
+    heroId: json['heroId'] as int,
+    gameVersionId: json['gameVersionId'] as int,
+    languageId: json['languageId'] as int,
+    displayName: json['displayName'] as String,
+    bio: json['bio'] as String,
+    hype: json['hype'] as String,
+  );
 }
+
+Map<String, dynamic> _$_$_LanguageToJson(_$_Language instance) =>
+    <String, dynamic>{
+      'heroId': instance.heroId,
+      'gameVersionId': instance.gameVersionId,
+      'languageId': instance.languageId,
+      'displayName': instance.displayName,
+      'bio': instance.bio,
+      'hype': instance.hype,
+    };
 
 _$_Role _$_$_RoleFromJson(Map<String, dynamic> json) {
-  return $checkedNew(r'_$_Role', json, () {
-    final val = _$_Role(
-      roleId: $checkedConvert(json, 'roleId', (v) => v as int),
-      level: $checkedConvert(json, 'level', (v) => v as int),
-    );
-    return val;
-  });
+  return _$_Role(
+    roleId: json['roleId'] as int,
+    level: json['level'] as int,
+  );
 }
 
+Map<String, dynamic> _$_$_RoleToJson(_$_Role instance) => <String, dynamic>{
+      'roleId': instance.roleId,
+      'level': instance.level,
+    };
+
 _$_Stat _$_$_StatFromJson(Map<String, dynamic> json) {
-  return $checkedNew(r'_$_Stat', json, () {
-    final val = _$_Stat(
-      gameVersionId: $checkedConvert(json, 'gameVersionId', (v) => v as int),
-      enabled: $checkedConvert(json, 'enabled', (v) => v as bool),
-      heroUnlockOrder:
-          $checkedConvert(json, 'heroUnlockOrder', (v) => v as int),
-      team: $checkedConvert(json, 'team', (v) => v as bool),
-      cmEnabled: $checkedConvert(json, 'cmEnabled', (v) => v as bool),
-      newPlayerEnabled:
-          $checkedConvert(json, 'newPlayerEnabled', (v) => v as bool),
-      attackType: $checkedConvert(
-          json, 'attackType', (v) => _$enumDecode(_$AttackTypeEnumMap, v)),
-      startingArmor:
-          $checkedConvert(json, 'startingArmor', (v) => (v as num).toDouble()),
-      startingMagicArmor:
-          $checkedConvert(json, 'startingMagicArmor', (v) => v as int),
-      startingDamageMin:
-          $checkedConvert(json, 'startingDamageMin', (v) => v as int),
-      startingDamageMax:
-          $checkedConvert(json, 'startingDamageMax', (v) => v as int),
-      attackRate:
-          $checkedConvert(json, 'attackRate', (v) => (v as num).toDouble()),
-      attackAnimationPoint: $checkedConvert(
-          json, 'attackAnimationPoint', (v) => (v as num).toDouble()),
-      attackAcquisitionRange:
-          $checkedConvert(json, 'attackAcquisitionRange', (v) => v as int),
-      attackRange: $checkedConvert(json, 'attackRange', (v) => v as int),
-      primaryAttribute: $checkedConvert(json, 'primaryAttribute',
-          (v) => _$enumDecode(_$PrimaryAttributeEnumMap, v)),
-      heroPrimaryAttribute:
-          $checkedConvert(json, 'heroPrimaryAttribute', (v) => v as int),
-      strengthBase: $checkedConvert(json, 'strengthBase', (v) => v as int),
-      strengthGain:
-          $checkedConvert(json, 'strengthGain', (v) => (v as num).toDouble()),
-      intelligenceBase:
-          $checkedConvert(json, 'intelligenceBase', (v) => v as int),
-      intelligenceGain: $checkedConvert(
-          json, 'intelligenceGain', (v) => (v as num).toDouble()),
-      agilityBase: $checkedConvert(json, 'agilityBase', (v) => v as int),
-      agilityGain:
-          $checkedConvert(json, 'agilityGain', (v) => (v as num).toDouble()),
-      hpRegen: $checkedConvert(json, 'hpRegen', (v) => (v as num).toDouble()),
-      mpRegen: $checkedConvert(json, 'mpRegen', (v) => (v as num).toDouble()),
-      moveSpeed: $checkedConvert(json, 'moveSpeed', (v) => v as int),
-      moveTurnRate:
-          $checkedConvert(json, 'moveTurnRate', (v) => (v as num).toDouble()),
-      hpBarOffset: $checkedConvert(json, 'hpBarOffset', (v) => v as int),
-      visionDaytimeRange:
-          $checkedConvert(json, 'visionDaytimeRange', (v) => v as int),
-      visionNighttimeRange:
-          $checkedConvert(json, 'visionNighttimeRange', (v) => v as int),
-      complexity: $checkedConvert(json, 'complexity', (v) => v as int),
-    );
-    return val;
-  });
+  return _$_Stat(
+    gameVersionId: json['gameVersionId'] as int,
+    enabled: json['enabled'] as bool,
+    heroUnlockOrder: json['heroUnlockOrder'] as int,
+    team: json['team'] as bool,
+    cmEnabled: json['cmEnabled'] as bool,
+    newPlayerEnabled: json['newPlayerEnabled'] as bool,
+    attackType: _$enumDecode(_$AttackTypeEnumMap, json['attackType']),
+    startingArmor: (json['startingArmor'] as num).toDouble(),
+    startingMagicArmor: json['startingMagicArmor'] as int,
+    startingDamageMin: json['startingDamageMin'] as int,
+    startingDamageMax: json['startingDamageMax'] as int,
+    attackRate: (json['attackRate'] as num).toDouble(),
+    attackAnimationPoint: (json['attackAnimationPoint'] as num).toDouble(),
+    attackAcquisitionRange: json['attackAcquisitionRange'] as int,
+    attackRange: json['attackRange'] as int,
+    primaryAttribute:
+        _$enumDecode(_$PrimaryAttributeEnumMap, json['primaryAttribute']),
+    heroPrimaryAttribute: json['heroPrimaryAttribute'] as int,
+    strengthBase: json['strengthBase'] as int,
+    strengthGain: (json['strengthGain'] as num).toDouble(),
+    intelligenceBase: json['intelligenceBase'] as int,
+    intelligenceGain: (json['intelligenceGain'] as num).toDouble(),
+    agilityBase: json['agilityBase'] as int,
+    agilityGain: (json['agilityGain'] as num).toDouble(),
+    hpRegen: (json['hpRegen'] as num).toDouble(),
+    mpRegen: (json['mpRegen'] as num).toDouble(),
+    moveSpeed: json['moveSpeed'] as int,
+    moveTurnRate: (json['moveTurnRate'] as num).toDouble(),
+    hpBarOffset: json['hpBarOffset'] as int,
+    visionDaytimeRange: json['visionDaytimeRange'] as int,
+    visionNighttimeRange: json['visionNighttimeRange'] as int,
+    complexity: json['complexity'] as int,
+  );
 }
+
+Map<String, dynamic> _$_$_StatToJson(_$_Stat instance) => <String, dynamic>{
+      'gameVersionId': instance.gameVersionId,
+      'enabled': instance.enabled,
+      'heroUnlockOrder': instance.heroUnlockOrder,
+      'team': instance.team,
+      'cmEnabled': instance.cmEnabled,
+      'newPlayerEnabled': instance.newPlayerEnabled,
+      'attackType': _$AttackTypeEnumMap[instance.attackType],
+      'startingArmor': instance.startingArmor,
+      'startingMagicArmor': instance.startingMagicArmor,
+      'startingDamageMin': instance.startingDamageMin,
+      'startingDamageMax': instance.startingDamageMax,
+      'attackRate': instance.attackRate,
+      'attackAnimationPoint': instance.attackAnimationPoint,
+      'attackAcquisitionRange': instance.attackAcquisitionRange,
+      'attackRange': instance.attackRange,
+      'primaryAttribute': _$PrimaryAttributeEnumMap[instance.primaryAttribute],
+      'heroPrimaryAttribute': instance.heroPrimaryAttribute,
+      'strengthBase': instance.strengthBase,
+      'strengthGain': instance.strengthGain,
+      'intelligenceBase': instance.intelligenceBase,
+      'intelligenceGain': instance.intelligenceGain,
+      'agilityBase': instance.agilityBase,
+      'agilityGain': instance.agilityGain,
+      'hpRegen': instance.hpRegen,
+      'mpRegen': instance.mpRegen,
+      'moveSpeed': instance.moveSpeed,
+      'moveTurnRate': instance.moveTurnRate,
+      'hpBarOffset': instance.hpBarOffset,
+      'visionDaytimeRange': instance.visionDaytimeRange,
+      'visionNighttimeRange': instance.visionNighttimeRange,
+      'complexity': instance.complexity,
+    };
 
 K _$enumDecode<K, V>(
   Map<K, V> enumValues,
@@ -174,12 +196,15 @@ const _$PrimaryAttributeEnumMap = {
 };
 
 _$_Talent _$_$_TalentFromJson(Map<String, dynamic> json) {
-  return $checkedNew(r'_$_Talent', json, () {
-    final val = _$_Talent(
-      slot: $checkedConvert(json, 'slot', (v) => v as int),
-      gameVersionId: $checkedConvert(json, 'gameVersionId', (v) => v as int),
-      abilityId: $checkedConvert(json, 'abilityId', (v) => v as int),
-    );
-    return val;
-  });
+  return _$_Talent(
+    slot: json['slot'] as int,
+    gameVersionId: json['gameVersionId'] as int,
+    abilityId: json['abilityId'] as int,
+  );
 }
+
+Map<String, dynamic> _$_$_TalentToJson(_$_Talent instance) => <String, dynamic>{
+      'slot': instance.slot,
+      'gameVersionId': instance.gameVersionId,
+      'abilityId': instance.abilityId,
+    };
