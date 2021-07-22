@@ -1,1 +1,1 @@
-export 'hero.dart';
+export 'dota2_hero.dart';
