@@ -23,7 +23,7 @@ class StratzApiClient {
 
   /// The current list of Heroes found in the Dota 2 client.
   /// Includes all base stats plus additional information on the hero.
-  Future<List<Dota2Hero>> getDota2Heroes() async {
+  Future<List<Dota2Hero>> getAllDota2Heroes() async {
     final dota2HeroRequest = Uri.https(_baseUrl, '/api/v1/Hero');
     final dota2HeroResponse = await _httpClient.get(dota2HeroRequest);
 
@@ -37,7 +37,11 @@ class StratzApiClient {
       throw Dota2HeroesNotFoundFailure();
     }
 
-    return compute(_parseDota2Heroes, dota2HeroMap);
+    return compute(_mapHeroesToList, dota2HeroMap);
+  }
+
+  static List<Dota2Hero> _mapHeroesToList(Map<String, Dota2Hero> dota2HeroMap) {
+    return dota2HeroMap.entries.map((e) => e.value).toList();
   }
 
   /// Get the [dota2Hero] icon URL
@@ -45,8 +49,21 @@ class StratzApiClient {
     return 'https://cdn.stratz.com/images/dota2/heroes/'
         '${dota2Hero.shortName}_icon.png';
   }
-}
 
-List<Dota2Hero> _parseDota2Heroes(Map<String, Dota2Hero> dota2HeroMap) {
-  return dota2HeroMap.entries.map((e) => e.value).toList();
+  /// Get single Hero by id
+  Future<Dota2Hero> getDota2Hero(int id) async {
+    final dota2Heroes = await getAllDota2Heroes();
+    final dota2map = {
+      'dota2Heroes': dota2Heroes,
+      'heroId': id,
+    };
+
+    return compute(_getSingleHeroById, dota2map);
+  }
+
+  static Dota2Hero _getSingleHeroById(Map<String, dynamic> dota2Map) {
+    final dota2Heroes = dota2Map['dota2Heroes'];
+    final heroId = dota2Map['heroId'];
+    return dota2Heroes.firstWhere((element) => element.id == heroId);
+  }
 }
