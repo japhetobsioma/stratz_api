@@ -1,20 +1,23 @@
 import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
-import 'package:stratz_api/stratz_api.dart';
 
-/// Exception thrown when getDota2Heroes fails
-class Dota2HeroesRequestFailure implements Exception {
+import 'models/dota2_hero/dota2_hero.dart';
+
+/// Exception thrown when getDota2Hero fails
+class Dota2HeroRequestFailure implements Exception {
   @override
-  String toString() => 'Dota2HeroesRequestFailure';
+  String toString() => 'Dota2HeroRequestFailure';
 }
 
-/// Exception thrown when the provided heroes is not found
-class Dota2HeroesNotFoundFailure implements Exception {
+/// Exception thrown when the heroes response is not found
+class Dota2HeroNotFoundFailure implements Exception {
   @override
-  String toString() => 'Dota2HeroesNotFoundFailure';
+  String toString() => 'Dota2HeroNotFoundFailure';
 }
 
+/// STRATZ API client library
 class StratzApiClient {
+  /// STRATZ API client library
   StratzApiClient({http.Client? httpClient})
       : _httpClient = httpClient ?? http.Client();
 
@@ -23,47 +26,34 @@ class StratzApiClient {
 
   /// The current list of Heroes found in the Dota 2 client.
   /// Includes all base stats plus additional information on the hero.
-  Future<List<Dota2Hero>> getAllDota2Heroes() async {
-    final dota2HeroRequest = Uri.https(_baseUrl, '/api/v1/Hero');
-    final dota2HeroResponse = await _httpClient.get(dota2HeroRequest);
+  ///
+  /// [gameVersionId] - Returns the list of heroes for the given GameVersionId.
+  /// Default is most recent build of the game.
+  ///
+  /// [languageId] - Input to determine which language some fields come back as.
+  Future<List<Dota2Hero>> getDota2Heroes({
+    int? gameVersionId,
+    int? languageId,
+  }) async {
+    final request = Uri.https(_baseUrl, '/api/v1/Hero');
+    final response = await _httpClient.get(request);
 
-    if (dota2HeroResponse.statusCode != 200) {
-      throw Dota2HeroesRequestFailure();
+    if (response.statusCode != 200) {
+      throw Dota2HeroRequestFailure();
     }
 
-    final dota2HeroMap = dota2HeroFromJson(dota2HeroResponse.body);
+    final heroMap = dota2HeroFromJson(response.body);
 
-    if (dota2HeroMap.isEmpty) {
-      throw Dota2HeroesNotFoundFailure();
+    if (heroMap.isEmpty) {
+      throw Dota2HeroNotFoundFailure();
     }
 
-    return compute(_mapHeroesToList, dota2HeroMap);
+    return compute(_heroMapToList, heroMap);
   }
 
-  static List<Dota2Hero> _mapHeroesToList(Map<String, Dota2Hero> dota2HeroMap) {
+  /// Parse Dota 2 hero Map to List in an isolate to prevent freezes as it
+  /// parses.
+  static List<Dota2Hero> _heroMapToList(Map<String, Dota2Hero> dota2HeroMap) {
     return dota2HeroMap.entries.map((e) => e.value).toList();
-  }
-
-  /// Get the [dota2Hero] icon URL
-  String getDota2HeroIconUrl(Dota2Hero dota2Hero) {
-    return 'https://cdn.stratz.com/images/dota2/heroes/'
-        '${dota2Hero.shortName}_icon.png';
-  }
-
-  /// Get single Hero by id
-  Future<Dota2Hero> getDota2Hero(int id) async {
-    final dota2Heroes = await getAllDota2Heroes();
-    final dota2map = {
-      'dota2Heroes': dota2Heroes,
-      'heroId': id,
-    };
-
-    return compute(_getSingleHeroById, dota2map);
-  }
-
-  static Dota2Hero _getSingleHeroById(Map<String, dynamic> dota2Map) {
-    final dota2Heroes = dota2Map['dota2Heroes'];
-    final heroId = dota2Map['heroId'];
-    return dota2Heroes.firstWhere((element) => element.id == heroId);
   }
 }
