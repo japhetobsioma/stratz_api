@@ -1,17 +1,18 @@
 import 'dart:convert';
 
 /// Decoding JSON to Ability.
-Map<String, Ability> abilityFromJson(String str) => Map.from(json.decode(str))
-    .map((k, v) => MapEntry<String, Ability>(k, Ability.fromJson(v)));
+Map<String, Dota2Ability> dota2AbilityFromJson(String str) =>
+    Map.from(json.decode(str)).map(
+        (k, v) => MapEntry<String, Dota2Ability>(k, Dota2Ability.fromJson(v)));
 
 /// Encoding Ability to JSON.
-String abilityToJson(Map<String, Ability> data) => json.encode(
+String dota2AbilityToJson(Map<String, Dota2Ability> data) => json.encode(
     Map.from(data).map((k, v) => MapEntry<String, dynamic>(k, v.toJson())));
 
 /// Ability in Dota 2.
-class Ability {
+class Dota2Ability {
   /// Ability in Dota 2.
-  Ability({
+  Dota2Ability({
     required this.id,
     required this.name,
     required this.drawMatchPage,
@@ -22,7 +23,7 @@ class Ability {
   });
 
   /// Ability fromJson factory method.
-  factory Ability.fromJson(Map<String, dynamic> json) => Ability(
+  factory Dota2Ability.fromJson(Map<String, dynamic> json) => Dota2Ability(
         id: json['id'],
         name: json['name'],
         drawMatchPage: json['drawMatchPage'],
