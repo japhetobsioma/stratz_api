@@ -31,13 +31,14 @@ class Dota2Hero {
         name: json['name'],
         displayName: json['displayName'],
         shortName: json['shortName'],
-        abilities: List<Ability>.from(
-            json['abilities'].map((x) => Ability.fromJson(x))),
-        roles: List<Role>.from(json['roles'].map((x) => Role.fromJson(x))),
-        talents:
-            List<Talent>.from(json['talents'].map((x) => Talent.fromJson(x))),
-        stat: Stat.fromJson(json['stat']),
-        language: Language.fromJson(json['language']),
+        abilities: List<Dota2HeroAbility>.from(
+            json['abilities'].map((x) => Dota2HeroAbility.fromJson(x))),
+        roles: List<Dota2HeroRole>.from(
+            json['roles'].map((x) => Dota2HeroRole.fromJson(x))),
+        talents: List<Dota2HeroTalent>.from(
+            json['talents'].map((x) => Dota2HeroTalent.fromJson(x))),
+        stat: Dota2HeroStat.fromJson(json['stat']),
+        language: Dota2HeroLanguage.fromJson(json['language']),
         aliases: List<String>.from(json['aliases'].map((x) => x)),
       );
 
@@ -54,20 +55,20 @@ class Dota2Hero {
   final String? shortName;
 
   /// Abilities of Dota 2 hero.
-  final List<Ability?> abilities;
+  final List<Dota2HeroAbility?> abilities;
 
   /// Roles of Dota 2 hero.
-  final List<Role?> roles;
+  final List<Dota2HeroRole?> roles;
 
   /// Talents of Dota 2 hero.
-  final List<Talent?> talents;
+  final List<Dota2HeroTalent?> talents;
 
   /// Stat of Dota 2 hero.
-  final Stat stat;
+  final Dota2HeroStat stat;
 
   /// This is what the display name, bio and hype of a Dota 2 hero in other
   /// languages.
-  final Language language;
+  final Dota2HeroLanguage language;
 
   /// Aliases of Dota 2 hero.
   final List<String?> aliases;
@@ -88,12 +89,13 @@ class Dota2Hero {
 }
 
 /// Ability of Dota 2 hero.
-class Ability {
+class Dota2HeroAbility {
   /// Ability of Dota 2 hero.
-  Ability({required this.slot, required this.abilityId});
+  Dota2HeroAbility({required this.slot, required this.abilityId});
 
   /// Ability fromJson factory method.
-  factory Ability.fromJson(Map<String, dynamic> json) => Ability(
+  factory Dota2HeroAbility.fromJson(Map<String, dynamic> json) =>
+      Dota2HeroAbility(
         slot: json['slot'],
         abilityId: json['abilityId'],
       );
@@ -112,15 +114,15 @@ class Ability {
 }
 
 /// Role of Dota 2 hero.
-class Role {
+class Dota2HeroRole {
   /// Role of Dota 2 hero.
-  Role({
+  Dota2HeroRole({
     required this.roleId,
     required this.level,
   });
 
   /// Role fromJson factory method.
-  factory Role.fromJson(Map<String, dynamic> json) => Role(
+  factory Dota2HeroRole.fromJson(Map<String, dynamic> json) => Dota2HeroRole(
         roleId: json['roleId'],
         level: json['level'],
       );
@@ -139,16 +141,17 @@ class Role {
 }
 
 /// Talent of Dota 2 hero.
-class Talent {
+class Dota2HeroTalent {
   /// Talent of Dota 2 hero.
-  Talent({
+  Dota2HeroTalent({
     required this.slot,
     required this.gameVersionId,
     required this.abilityId,
   });
 
   /// Talent fromJson factory method.
-  factory Talent.fromJson(Map<String, dynamic> json) => Talent(
+  factory Dota2HeroTalent.fromJson(Map<String, dynamic> json) =>
+      Dota2HeroTalent(
         slot: json['slot'],
         gameVersionId: json['gameVersionId'],
         abilityId: json['abilityId'],
@@ -172,9 +175,9 @@ class Talent {
 }
 
 /// Stat of Dota 2 hero.
-class Stat {
+class Dota2HeroStat {
   /// Stat of Dota 2 hero.
-  Stat({
+  Dota2HeroStat({
     required this.gameVersionId,
     required this.enabled,
     required this.heroUnlockOrder,
@@ -209,7 +212,7 @@ class Stat {
   });
 
   /// Stat fromJson factory method.
-  factory Stat.fromJson(Map<String, dynamic> json) => Stat(
+  factory Dota2HeroStat.fromJson(Map<String, dynamic> json) => Dota2HeroStat(
         gameVersionId: json['gameVersionId'],
         enabled: json['enabled'],
         heroUnlockOrder: json['heroUnlockOrder'],
@@ -377,10 +380,10 @@ class Stat {
 
 /// This is what the display name, bio and hype of a Dota 2 hero in other
 /// languages.
-class Language {
+class Dota2HeroLanguage {
   /// This is what the display name, bio and hype of a Dota 2 hero in other
   /// languages.
-  Language({
+  Dota2HeroLanguage({
     required this.heroId,
     required this.gameVersionId,
     required this.languageId,
@@ -390,7 +393,8 @@ class Language {
   });
 
   /// Language fromJson factory method.
-  factory Language.fromJson(Map<String, dynamic> json) => Language(
+  factory Dota2HeroLanguage.fromJson(Map<String, dynamic> json) =>
+      Dota2HeroLanguage(
         heroId: json['heroId'],
         gameVersionId: json['gameVersionId'],
         languageId: json['languageId'],
