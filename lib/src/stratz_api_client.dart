@@ -1,10 +1,8 @@
 import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
-import 'package:stratz_api/src/models/models.dart';
 
 import 'client_exception.dart';
-import 'models/dota2_ability.dart';
-import 'models/dota2_hero/dota2_hero.dart';
+import 'model/models.dart';
 
 /// STRATZ API client library
 class StratzApiClient {
