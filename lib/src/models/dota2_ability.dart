@@ -30,10 +30,8 @@ class Dota2Ability {
         isTalent: json['isTalent'],
         language: json['language'] == null
             ? null
-            : Dota2AbilityLanguage.fromJson(json['language']),
-        stat: json['stat'] == null
-            ? null
-            : Dota2AbilityStat.fromJson(json['stat']),
+            : _Language._fromJson(json['language']),
+        stat: json['stat'] == null ? null : _Stat._fromJson(json['stat']),
         uri: json['uri'],
       );
 
@@ -50,10 +48,10 @@ class Dota2Ability {
   final bool? isTalent;
 
   /// Ability in this language.
-  final Dota2AbilityLanguage? language;
+  final _Language? language;
 
   /// Stat of ability.
-  final Dota2AbilityStat? stat;
+  final _Stat? stat;
 
   /// Uri of ability.
   final String? uri;
@@ -64,16 +62,16 @@ class Dota2Ability {
         'name': name,
         'drawMatchPage': drawMatchPage,
         'isTalent': isTalent,
-        'language': language == null ? null : language!.toJson(),
-        'stat': stat == null ? null : stat!.toJson(),
+        'language': language == null ? null : language!._toJson(),
+        'stat': stat == null ? null : stat!._toJson(),
         'uri': uri,
       };
 }
 
 /// Ability in this language.
-class Dota2AbilityLanguage {
+class _Language {
   // Ability in this language.
-  Dota2AbilityLanguage({
+  _Language({
     required this.abilityId,
     required this.gameVersionId,
     required this.languageId,
@@ -87,8 +85,7 @@ class Dota2AbilityLanguage {
   });
 
   /// Language fromJson factory method.
-  factory Dota2AbilityLanguage.fromJson(Map<String, dynamic> json) =>
-      Dota2AbilityLanguage(
+  factory _Language._fromJson(Map<String, dynamic> json) => _Language(
         abilityId: json['abilityId'],
         gameVersionId: json['gameVersionId'],
         languageId: json['languageId'],
@@ -132,7 +129,7 @@ class Dota2AbilityLanguage {
   final String? aghanimDescription;
 
   /// Language toJson method.
-  Map<String, dynamic> toJson() => {
+  Map<String, dynamic> _toJson() => {
         'abilityId': abilityId,
         'gameVersionId': gameVersionId,
         'languageId': languageId,
@@ -147,9 +144,9 @@ class Dota2AbilityLanguage {
 }
 
 /// Stat of ability.
-class Dota2AbilityStat {
+class _Stat {
   /// Stat of ability.
-  Dota2AbilityStat({
+  _Stat({
     required this.abilityId,
     required this.gameVersionId,
     required this.type,
@@ -187,8 +184,7 @@ class Dota2AbilityStat {
   });
 
   /// Stat fromJson factory method.
-  factory Dota2AbilityStat.fromJson(Map<String, dynamic> json) =>
-      Dota2AbilityStat(
+  factory _Stat._fromJson(Map<String, dynamic> json) => _Stat(
         abilityId: json['abilityId'],
         gameVersionId: json['gameVersionId'],
         type: json['type'],
@@ -340,7 +336,7 @@ class Dota2AbilityStat {
   final String? hotKeyOverride;
 
   /// Ability toJson method.
-  Map<String, dynamic> toJson() => {
+  Map<String, dynamic> _toJson() => {
         'abilityId': abilityId,
         'gameVersionId': gameVersionId,
         'type': type,

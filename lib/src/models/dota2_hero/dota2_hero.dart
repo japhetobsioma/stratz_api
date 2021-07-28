@@ -31,14 +31,13 @@ class Dota2Hero {
         name: json['name'],
         displayName: json['displayName'],
         shortName: json['shortName'],
-        abilities: List<Dota2HeroAbility>.from(
-            json['abilities'].map((x) => Dota2HeroAbility.fromJson(x))),
-        roles: List<Dota2HeroRole>.from(
-            json['roles'].map((x) => Dota2HeroRole.fromJson(x))),
-        talents: List<Dota2HeroTalent>.from(
-            json['talents'].map((x) => Dota2HeroTalent.fromJson(x))),
-        stat: Dota2HeroStat.fromJson(json['stat']),
-        language: Dota2HeroLanguage.fromJson(json['language']),
+        abilities: List<_Ability>.from(
+            json['abilities'].map((x) => _Ability._fromJson(x))),
+        roles: List<_Role>.from(json['roles'].map((x) => _Role._fromJson(x))),
+        talents: List<_Talent>.from(
+            json['talents'].map((x) => _Talent._fromJson(x))),
+        stat: _Stat._fromJson(json['stat']),
+        language: _Language._fromJson(json['language']),
         aliases: List<String>.from(json['aliases'].map((x) => x)),
       );
 
@@ -55,20 +54,20 @@ class Dota2Hero {
   final String? shortName;
 
   /// Abilities of Dota 2 hero.
-  final List<Dota2HeroAbility?> abilities;
+  final List<_Ability?> abilities;
 
   /// Roles of Dota 2 hero.
-  final List<Dota2HeroRole?> roles;
+  final List<_Role?> roles;
 
   /// Talents of Dota 2 hero.
-  final List<Dota2HeroTalent?> talents;
+  final List<_Talent?> talents;
 
   /// Stat of Dota 2 hero.
-  final Dota2HeroStat stat;
+  final _Stat stat;
 
   /// This is what the display name, bio and hype of a Dota 2 hero in other
   /// languages.
-  final Dota2HeroLanguage language;
+  final _Language language;
 
   /// Aliases of Dota 2 hero.
   final List<String?> aliases;
@@ -79,23 +78,22 @@ class Dota2Hero {
         'name': name,
         'displayName': displayName,
         'shortName': shortName,
-        'abilities': List<dynamic>.from(abilities.map((x) => x!.toJson())),
-        'roles': List<dynamic>.from(roles.map((x) => x!.toJson())),
-        'talents': List<dynamic>.from(talents.map((x) => x!.toJson())),
-        'stat': stat.toJson(),
-        'language': language.toJson(),
+        'abilities': List<dynamic>.from(abilities.map((x) => x!._toJson())),
+        'roles': List<dynamic>.from(roles.map((x) => x!._toJson())),
+        'talents': List<dynamic>.from(talents.map((x) => x!._toJson())),
+        'stat': stat._toJson(),
+        'language': language._toJson(),
         'aliases': List<dynamic>.from(aliases.map((x) => x)),
       };
 }
 
 /// Ability of Dota 2 hero.
-class Dota2HeroAbility {
+class _Ability {
   /// Ability of Dota 2 hero.
-  Dota2HeroAbility({required this.slot, required this.abilityId});
+  _Ability({required this.slot, required this.abilityId});
 
   /// Ability fromJson factory method.
-  factory Dota2HeroAbility.fromJson(Map<String, dynamic> json) =>
-      Dota2HeroAbility(
+  factory _Ability._fromJson(Map<String, dynamic> json) => _Ability(
         slot: json['slot'],
         abilityId: json['abilityId'],
       );
@@ -107,22 +105,22 @@ class Dota2HeroAbility {
   final int abilityId;
 
   /// Ability toJson method.
-  Map<String, dynamic> toJson() => {
+  Map<String, dynamic> _toJson() => {
         'slot': slot,
         'abilityId': abilityId,
       };
 }
 
 /// Role of Dota 2 hero.
-class Dota2HeroRole {
+class _Role {
   /// Role of Dota 2 hero.
-  Dota2HeroRole({
+  _Role({
     required this.roleId,
     required this.level,
   });
 
   /// Role fromJson factory method.
-  factory Dota2HeroRole.fromJson(Map<String, dynamic> json) => Dota2HeroRole(
+  factory _Role._fromJson(Map<String, dynamic> json) => _Role(
         roleId: json['roleId'],
         level: json['level'],
       );
@@ -134,24 +132,23 @@ class Dota2HeroRole {
   final int level;
 
   /// Role toJson method.
-  Map<String, dynamic> toJson() => {
+  Map<String, dynamic> _toJson() => {
         'roleId': roleId,
         'level': level,
       };
 }
 
 /// Talent of Dota 2 hero.
-class Dota2HeroTalent {
+class _Talent {
   /// Talent of Dota 2 hero.
-  Dota2HeroTalent({
+  _Talent({
     required this.slot,
     required this.gameVersionId,
     required this.abilityId,
   });
 
   /// Talent fromJson factory method.
-  factory Dota2HeroTalent.fromJson(Map<String, dynamic> json) =>
-      Dota2HeroTalent(
+  factory _Talent._fromJson(Map<String, dynamic> json) => _Talent(
         slot: json['slot'],
         gameVersionId: json['gameVersionId'],
         abilityId: json['abilityId'],
@@ -167,7 +164,7 @@ class Dota2HeroTalent {
   final int abilityId;
 
   /// Talent toJson method.
-  Map<String, dynamic> toJson() => {
+  Map<String, dynamic> _toJson() => {
         'slot': slot,
         'gameVersionId': gameVersionId,
         'abilityId': abilityId,
@@ -175,9 +172,9 @@ class Dota2HeroTalent {
 }
 
 /// Stat of Dota 2 hero.
-class Dota2HeroStat {
+class _Stat {
   /// Stat of Dota 2 hero.
-  Dota2HeroStat({
+  _Stat({
     required this.gameVersionId,
     required this.enabled,
     required this.heroUnlockOrder,
@@ -212,7 +209,7 @@ class Dota2HeroStat {
   });
 
   /// Stat fromJson factory method.
-  factory Dota2HeroStat.fromJson(Map<String, dynamic> json) => Dota2HeroStat(
+  factory _Stat._fromJson(Map<String, dynamic> json) => _Stat(
         gameVersionId: json['gameVersionId'],
         enabled: json['enabled'],
         heroUnlockOrder: json['heroUnlockOrder'],
@@ -266,7 +263,9 @@ class Dota2HeroStat {
   final bool? newPlayerEnabled;
 
   /// Attack type of Dota 2 hero.
-  final AttackType? attackType;
+  ///
+  /// Call `name` to get the String representation.
+  final _AttackType? attackType;
 
   /// Starting armor of Dota 2 hero.
   final double? startingArmor;
@@ -295,7 +294,9 @@ class Dota2HeroStat {
   /// Primary attributes of Dota 2 hero.
   ///
   /// Primary attributes are: Agility, Strength and Intelligence.
-  final PrimaryAttribute? primaryAttribute;
+  ///
+  /// Call `name` to get the String representation.
+  final _PrimaryAttribute? primaryAttribute;
 
   /// Primary attribute of Dota 2 hero.
   final int heroPrimaryAttribute;
@@ -343,14 +344,14 @@ class Dota2HeroStat {
   final int? complexity;
 
   /// Stat toJson method.
-  Map<String, dynamic> toJson() => {
+  Map<String, dynamic> _toJson() => {
         'gameVersionId': gameVersionId,
         'enabled': enabled,
         'heroUnlockOrder': heroUnlockOrder,
         'team': team,
         'cmEnabled': cmEnabled,
         'newPlayerEnabled': newPlayerEnabled,
-        'attackType': _attackTypeValues.reverse![attackType],
+        'attackType': _attackTypeValues._reverse![attackType],
         'startingArmor': startingArmor,
         'startingMagicArmor': startingMagicArmor,
         'startingDamageMin': startingDamageMin,
@@ -359,7 +360,7 @@ class Dota2HeroStat {
         'attackAnimationPoint': attackAnimationPoint,
         'attackAcquisitionRange': attackAcquisitionRange,
         'attackRange': attackRange,
-        'primaryAttribute': _primaryAttributeValues.reverse![primaryAttribute],
+        'primaryAttribute': _primaryAttributeValues._reverse![primaryAttribute],
         'heroPrimaryAttribute': heroPrimaryAttribute,
         'strengthBase': strengthBase,
         'strengthGain': strengthGain,
@@ -380,10 +381,10 @@ class Dota2HeroStat {
 
 /// This is what the display name, bio and hype of a Dota 2 hero in other
 /// languages.
-class Dota2HeroLanguage {
+class _Language {
   /// This is what the display name, bio and hype of a Dota 2 hero in other
   /// languages.
-  Dota2HeroLanguage({
+  _Language({
     required this.heroId,
     required this.gameVersionId,
     required this.languageId,
@@ -393,8 +394,7 @@ class Dota2HeroLanguage {
   });
 
   /// Language fromJson factory method.
-  factory Dota2HeroLanguage.fromJson(Map<String, dynamic> json) =>
-      Dota2HeroLanguage(
+  factory _Language._fromJson(Map<String, dynamic> json) => _Language(
         heroId: json['heroId'],
         gameVersionId: json['gameVersionId'],
         languageId: json['languageId'],
@@ -422,7 +422,7 @@ class Dota2HeroLanguage {
   final String hype;
 
   /// Language toJson method.
-  Map<String, dynamic> toJson() => {
+  Map<String, dynamic> _toJson() => {
         'heroId': heroId,
         'gameVersionId': gameVersionId,
         'languageId': languageId,
@@ -433,7 +433,7 @@ class Dota2HeroLanguage {
 }
 
 /// Attack type of Dota 2 hero.
-enum AttackType {
+enum _AttackType {
   /// Dota 2 hero with short range attack.
   melee,
 
@@ -443,12 +443,21 @@ enum AttackType {
 
 /// Attack type values of Dota 2 hero.
 final _attackTypeValues = _EnumValues({
-  'Melee': AttackType.melee,
-  'Ranged': AttackType.ranged,
+  'Melee': _AttackType.melee,
+  'Ranged': _AttackType.ranged,
 });
 
+/// Extension method for Attack type
+extension AttackTypeX on _AttackType {
+  /// Get attack type name.
+  String? get name => {
+        _AttackType.melee: 'Melee',
+        _AttackType.ranged: 'Ranged',
+      }[this];
+}
+
 /// Primary attribute of Dota 2 hero.
-enum PrimaryAttribute {
+enum _PrimaryAttribute {
   /// It increases armor, attack speed, and the damage of Dota 2 hero.
   agility,
 
@@ -463,18 +472,18 @@ enum PrimaryAttribute {
 
 /// Primary attribute values of Dota 2 hero.
 final _primaryAttributeValues = _EnumValues({
-  'agi': PrimaryAttribute.agility,
-  'int': PrimaryAttribute.intelligence,
-  'str': PrimaryAttribute.strength
+  'agi': _PrimaryAttribute.agility,
+  'int': _PrimaryAttribute.intelligence,
+  'str': _PrimaryAttribute.strength
 });
 
 /// Extension method for PrimaryAttribute
-extension PrimaryAttributeX on PrimaryAttribute {
+extension PrimaryAttributeX on _PrimaryAttribute {
   /// Get primary attribute name.
   String? get name => {
-        PrimaryAttribute.agility: 'Agility',
-        PrimaryAttribute.intelligence: 'Intelligence',
-        PrimaryAttribute.strength: 'Strength',
+        _PrimaryAttribute.agility: 'Agility',
+        _PrimaryAttribute.intelligence: 'Intelligence',
+        _PrimaryAttribute.strength: 'Strength',
       }[this];
 }
 
@@ -490,7 +499,7 @@ class _EnumValues<T> {
   Map<T, String>? reverseMap;
 
   /// Reverse this Enum values to String.
-  Map<T, String>? get reverse {
+  Map<T, String>? get _reverse {
     reverseMap ??= map.map((k, v) => MapEntry(v, k));
     return reverseMap;
   }
