@@ -57,3 +57,15 @@ class Dota2GameVersionNotFoundFailure implements Exception {
   @override
   String toString() => 'Dota2GameVersionNotFoundFailure';
 }
+
+/// Exception thrown when getDota2HeroRole fails.
+class Dota2HeroRoleRequestFailure implements Exception {
+  @override
+  String toString() => 'Dota2HeroRoleRequestFailure';
+}
+
+/// Exception thrown when the game version response is not found.
+class Dota2HeroRoleNotFoundFailure implements Exception {
+  @override
+  String toString() => 'Dota2HeroRoleNotFoundFailure';
+}

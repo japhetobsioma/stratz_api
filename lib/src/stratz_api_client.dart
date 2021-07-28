@@ -126,6 +126,23 @@ class StratzApiClient {
     return gameVersionList;
   }
 
+  Future<List<Dota2HeroRole>> getDota2HeroRoles() async {
+    final request = Uri.https(_baseUrl, '/api/v1/Hero/roles');
+    final response = await _httpClient.get(request);
+
+    if (response.statusCode != 200) {
+      throw Dota2HeroRoleRequestFailure();
+    }
+
+    final heroRoleList = dota2HeroRoleFromJson(response.body);
+
+    if (heroRoleList.isEmpty) {
+      throw Dota2HeroRoleNotFoundFailure();
+    }
+
+    return heroRoleList;
+  }
+
   /// Parse Dota 2 hero Map to List in an isolate to prevent freezes as it
   /// parses.
   static List<Dota2Hero> _heroMapToList(Map<String, Dota2Hero> dota2HeroMap) {
