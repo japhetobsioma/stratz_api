@@ -39,6 +39,8 @@ class Dota2Ability {
   final int id;
 
   /// Name of ability.
+  ///
+  /// Example: antimage_mana_break
   final String? name;
 
   /// drawMatchPage of ability.
@@ -54,6 +56,8 @@ class Dota2Ability {
   final _Stat? stat;
 
   /// Uri of ability.
+  ///
+  /// Example: antimage
   final String? uri;
 
   /// Ability toJson method.
@@ -107,25 +111,43 @@ class _Language {
   /// ID of language.
   final int languageId;
 
-  /// Display name of ability.
+  /// Display name of ability based on game version ID and language ID.
+  ///
+  /// Example: Mana Break.
   final String? displayName;
 
-  /// Description of ability.
+  /// Description of ability based on game version ID and language ID.
+  ///
+  /// Example: Burns an opponent's mana on each attack. Mana Break deals 50% of
+  /// the mana burned as damage to the target. Mana Break has 50% effect if
+  /// caused by illusions.
   final List<String>? description;
 
-  /// Attributes of ability.
+  /// Attributes of ability based on game version ID and language ID.
+  ///
+  /// Example: MANA BURNED PER HIT: 28 / 40 / 52 / 64,
+  /// MAX MANA BURNED PER HIT: 1% / 1.8% / 2.6% / 3.4%.
   final List<String>? attributes;
 
-  /// Notes of ability.
+  /// Notes of ability based on game version ID and language ID.
   final List<String> notes;
 
-  /// Lore of ability.
+  /// Lore of ability based on game version ID and language ID.
+  ///
+  /// Example: A modified technique of the Turstarkuri monks' peaceful ways is
+  /// to turn magical energies on their owner.
   final String? lore;
 
-  /// Shard description of ability.
+  /// Shard description of ability based on game version ID and language ID.
+  ///
+  /// Example: Increases range by 300 and reduces cooldown by 2.
   final String? shardDescription;
 
-  /// aghanim description of ability.
+  /// Aghanim description of ability based on game version ID and language ID.
+  ///
+  /// Example: Berserker's Call applies Battle Hunger to affected units. Battle
+  /// Hunger also reduces enemy armor by 7 and grants Axe 7 armor per affected
+  /// target. Reduces Berserker's Call cooldown by 3.
   final String? aghanimDescription;
 
   /// Language toJson method.
@@ -333,6 +355,8 @@ class _Stat {
   final List<int>? damage;
 
   /// Hot key override of ability.
+  ///
+  /// Example: Y
   final String? hotKeyOverride;
 
   /// Ability toJson method.

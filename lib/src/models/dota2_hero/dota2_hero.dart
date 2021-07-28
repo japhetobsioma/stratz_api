@@ -45,12 +45,18 @@ class Dota2Hero {
   final int id;
 
   /// Name of Dota 2 hero.
+  ///
+  /// Example: npc_dota_hero_antimage
   final String? name;
 
   /// Display name of Dota 2 hero.
+  ///
+  /// Example: Anti-Mage
   final String? displayName;
 
   /// Short name of Dota 2 hero.
+  ///
+  /// Example: antimage
   final String? shortName;
 
   /// Abilities of Dota 2 hero.
@@ -265,6 +271,8 @@ class _Stat {
   /// Attack type of Dota 2 hero.
   ///
   /// Call `name` to get the String representation.
+  ///
+  /// Example: Melee
   final _AttackType? attackType;
 
   /// Starting armor of Dota 2 hero.
@@ -296,6 +304,8 @@ class _Stat {
   /// Primary attributes are: Agility, Strength and Intelligence.
   ///
   /// Call `name` to get the String representation.
+  ///
+  /// Example: Agi
   final _PrimaryAttribute? primaryAttribute;
 
   /// Primary attribute of Dota 2 hero.
@@ -413,12 +423,40 @@ class _Language {
   final int languageId;
 
   /// Display name of Dota 2 hero based on game version ID and language ID.
+  ///
+  /// Example: Anti-Mage
   final String displayName;
 
   /// Bio of Dota 2 hero based on game version ID and language ID.
+  ///
+  /// Example: The monks of Turstarkuri watched the rugged valleys below their
+  /// mountain monastery as wave after wave of invaders swept through the lower
+  /// kingdoms. Ascetic and pragmatic, in their remote monastic eyrie they
+  /// remained aloof from mundane strife, wrapped in meditation that knew no
+  /// gods or elements of magic. Then came the Legion of the Dead God,
+  /// crusaders with a sinister mandate to replace all local worship with
+  /// their Unliving Lord's poisonous nihilosophy. From a landscape that had
+  /// known nothing but blood and battle for a thousand years, they tore the
+  /// souls and bones of countless fallen legions and pitched them against
+  /// Turstarkuri. The monastery stood scarcely a fortnight against the assault,
+  /// and the few monks who bothered to surface from their meditations believed
+  /// the invaders were but demonic visions sent to distract them from
+  /// meditation. They died where they sat on their silken cushions. Only one
+  /// youth survived--a pilgrim who had come as an acolyte, seeking wisdom, but
+  /// had yet to be admitted to the monastery. He watched in horror as the monks
+  /// to whom he had served tea and nettles were first slaughtered, then raised
+  /// to join the ranks of the Dead God's priesthood. With nothing but a few of
+  /// Turstarkuri's prized dogmatic scrolls, he crept away to the comparative
+  /// safety of other lands, swearing to obliterate not only the Dead God's
+  /// magic users--but to put an end to magic altogether.
   final String bio;
 
-  /// Hype name of Dota 2 hero based on game version ID and language ID.
+  /// Hype of Dota 2 hero based on game version ID and language ID.
+  ///
+  /// Example: Should Anti-Mage have the opportunity to gather his full
+  /// strength, few can stop his assaults. <b>Draining mana</b> from enemies
+  /// with every strike or <b>teleporting short distances</b> to escape an
+  /// ambush, cornering him is a challenge for any foe.
   final String hype;
 
   /// Language toJson method.
