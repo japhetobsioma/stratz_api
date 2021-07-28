@@ -45,3 +45,15 @@ class Dota2GameModeNotFoundFailure implements Exception {
   @override
   String toString() => 'Dota2GameModeNotFoundFailure';
 }
+
+/// Exception thrown when getDota2GameVersion fails.
+class Dota2GameVersionRequestFailure implements Exception {
+  @override
+  String toString() => 'Dota2GameVersionRequestFailure';
+}
+
+/// Exception thrown when the game version response is not found.
+class Dota2GameVersionNotFoundFailure implements Exception {
+  @override
+  String toString() => 'Dota2GameVersionNotFoundFailure';
+}

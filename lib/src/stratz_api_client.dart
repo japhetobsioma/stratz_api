@@ -108,6 +108,24 @@ class StratzApiClient {
     return gameModeMap.entries.map((e) => e.value).toList();
   }
 
+  /// The list of game versions the Dota 2 game has gone through.
+  Future<List<Dota2GameVersion>> getDota2GameVersions() async {
+    final request = Uri.https(_baseUrl, '/api/v1/GameVersion');
+    final response = await _httpClient.get(request);
+
+    if (response.statusCode != 200) {
+      throw Dota2GameVersionRequestFailure();
+    }
+
+    final gameVersionList = dota2GameVersionFromJson(response.body);
+
+    if (gameVersionList.isEmpty) {
+      throw Dota2GameVersionNotFoundFailure();
+    }
+
+    return gameVersionList;
+  }
+
   /// Parse Dota 2 hero Map to List in an isolate to prevent freezes as it
   /// parses.
   static List<Dota2Hero> _heroMapToList(Map<String, Dota2Hero> dota2HeroMap) {
