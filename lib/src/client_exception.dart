@@ -21,3 +21,15 @@ class Dota2AbilityNotFoundFailure implements Exception {
   @override
   String toString() => 'Dota2AbilityNotFoundFailure';
 }
+
+/// Exception thrown when getDota2Cluster fails
+class Dota2ClusterRequestFailure implements Exception {
+  @override
+  String toString() => 'Dota2ClusterRequestFailure';
+}
+
+/// Exception thrown when the cluster response is not found
+class Dota2ClusterNotFoundFailure implements Exception {
+  @override
+  String toString() => 'Dota2ClusterNotFoundFailure';
+}

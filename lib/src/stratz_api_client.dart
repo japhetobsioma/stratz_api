@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
+import 'package:stratz_api/src/models/models.dart';
 
 import 'client_exception.dart';
 import 'models/dota2_ability.dart';
@@ -11,7 +12,10 @@ class StratzApiClient {
   StratzApiClient({http.Client? httpClient})
       : _httpClient = httpClient ?? http.Client();
 
+  /// STRATZ API base URL.
   static const _baseUrl = 'api.stratz.com';
+
+  /// Http client
   final http.Client _httpClient;
 
   /// The current list of Heroes found in the Dota 2 client.
@@ -66,6 +70,25 @@ class StratzApiClient {
     }
 
     return compute(_abilityMapToList, abilityMap);
+  }
+
+  /// Provided directly from Dota 2 Region files, the cluster is the
+  /// geographically breakdown of where the game is played.
+  Future<List<Dota2Cluster>> getDota2Clusters() async {
+    final request = Uri.https(_baseUrl, '/api/v1/Cluster');
+    final response = await _httpClient.get(request);
+
+    if (response.statusCode != 200) {
+      throw Dota2ClusterRequestFailure();
+    }
+
+    final clusterList = dota2ClusterFromJson(response.body);
+
+    if (clusterList.isEmpty) {
+      throw Dota2ClusterNotFoundFailure();
+    }
+
+    return clusterList;
   }
 
   /// Parse Dota 2 hero Map to List in an isolate to prevent freezes as it
