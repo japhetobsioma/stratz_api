@@ -89,6 +89,25 @@ class StratzApiClient {
     return clusterList;
   }
 
+  /// Returns a list of GameMode types which is directly supplied by Dota 2.
+  /// Matches API call will have a input for this value.
+  Future<List<Dota2GameMode>> getDota2GameModes() async {
+    final request = Uri.https(_baseUrl, '/api/v1/GameMode');
+    final response = await _httpClient.get(request);
+
+    if (response.statusCode != 200) {
+      throw Dota2GameModeRequestFailure();
+    }
+
+    final gameModeMap = dota2GameModeFromJson(response.body);
+
+    if (gameModeMap.isEmpty) {
+      throw Dota2GameModeNotFoundFailure();
+    }
+
+    return gameModeMap.entries.map((e) => e.value).toList();
+  }
+
   /// Parse Dota 2 hero Map to List in an isolate to prevent freezes as it
   /// parses.
   static List<Dota2Hero> _heroMapToList(Map<String, Dota2Hero> dota2HeroMap) {

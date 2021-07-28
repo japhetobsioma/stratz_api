@@ -33,3 +33,15 @@ class Dota2ClusterNotFoundFailure implements Exception {
   @override
   String toString() => 'Dota2ClusterNotFoundFailure';
 }
+
+/// Exception thrown when getDota2GameMode fails
+class Dota2GameModeRequestFailure implements Exception {
+  @override
+  String toString() => 'Dota2GameModeRequestFailure';
+}
+
+/// Exception thrown when the game mode response is not found
+class Dota2GameModeNotFoundFailure implements Exception {
+  @override
+  String toString() => 'Dota2GameModeNotFoundFailure';
+}
