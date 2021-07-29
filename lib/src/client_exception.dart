@@ -69,3 +69,15 @@ class Dota2HeroRoleNotFoundFailure implements Exception {
   @override
   String toString() => 'Dota2HeroRoleNotFoundFailure';
 }
+
+/// Exception thrown when getDota2HeroDryad fails.
+class Dota2HeroDryadRequestFailure implements Exception {
+  @override
+  String toString() => 'Dota2HeroDryadRequestFailure';
+}
+
+/// Exception thrown when the hero dryad response is not found.
+class Dota2HeroDryadNotFoundFailure implements Exception {
+  @override
+  String toString() => 'Dota2HeroDryadNotFoundFailure';
+}

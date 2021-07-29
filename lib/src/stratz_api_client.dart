@@ -143,6 +143,70 @@ class StratzApiClient {
     return heroRoleList;
   }
 
+  /// Returns back a list of the dryads (Duos)
+  ///
+  /// [id] - Hero Id of the data you are requesting.
+  ///
+  /// [week] - Epoc TimeStamp of the week of data you want. Leaving null gives
+  /// the current week.
+  ///
+  /// [bracketBasic] - Given STRATZ Rank value. 0 = Unknown, 1 = HeraldGuardian,
+  /// 2 = CrusaderArchon, 3 = LegendAncient, 4 = DivineImmortal.
+  ///
+  /// [orderBy] - Input string of how to order dryads and triads. Synergy is
+  /// STRATZ formula to help determine the best outcome of wins and picks in
+  /// one. Accepted Inputs : Win, Loss, Pick, Synergy, Advantage, Disadvantage.
+  ///
+  /// [matchLimit] - Minimum amount of MatchCount required for a Duo to qualify.
+  ///
+  /// [take] - Amount to return back.
+  ///
+  /// [skip] - Amount to Skip before returning data.
+  Future<List<Dota2HeroDryad>> getDota2HeroDryad({
+    required int id,
+    int? week,
+    List<int>? bracketBasic,
+    OrderBy? orderBy,
+    int? matchLimit,
+    int? take,
+    int? skip,
+  }) async {
+    assert(id > 0, 'ID not found');
+    assert(
+      bracketBasic!.any((e) =>
+          (e == 0 || e == 1 || e == 2 || e == 3 || e == 4) ||
+          e == 254 ||
+          e == 255),
+      'Available values: 0, 1, 2, 3, 4, 254, 255',
+    );
+
+    final request = Uri.https(
+      _baseUrl,
+      '/api/v1/Hero/$id/dryad',
+      <String, dynamic>{
+        'week': week ?? '',
+        'bracketBasic': bracketBasic ?? '',
+        'orderBy': orderBy?.name ?? '',
+        'matchLimit': matchLimit ?? '',
+        'take': take ?? '',
+        'skip': skip ?? '',
+      },
+    );
+    final response = await _httpClient.get(request);
+
+    if (response.statusCode != 200) {
+      throw Dota2HeroRoleRequestFailure();
+    }
+
+    final heroDryadList = dota2HeroDryadFromJson(response.body);
+
+    if (heroDryadList.isEmpty) {
+      throw Dota2HeroRoleNotFoundFailure();
+    }
+
+    return heroDryadList;
+  }
+
   /// Parse Dota 2 hero Map to List in an isolate to prevent freezes as it
   /// parses.
   static List<Dota2Hero> _heroMapToList(Map<String, Dota2Hero> dota2HeroMap) {
@@ -155,4 +219,39 @@ class StratzApiClient {
       Map<String, Dota2Ability> dota2AbilityMap) {
     return dota2AbilityMap.entries.map((e) => e.value).toList();
   }
+}
+
+/// Input string of how to order dryads and triads. Synergy is STRATZ formula
+/// to help determine the best outcome of wins and picks in one. Accepted
+/// Inputs : Win, Loss, Pick, Synergy, Advantage, Disadvantage
+enum OrderBy {
+  /// Order by win.
+  win,
+
+  /// Order by loss.
+  loss,
+
+  /// Order by pick.
+  pick,
+
+  /// Order by synergy.
+  synergy,
+
+  /// Order by advantage.
+  advantage,
+
+  /// Order by disadvantage.
+  disadvantage,
+}
+
+/// Extension method for order by
+extension _OrderByX on OrderBy {
+  /// Get order by name
+  String? get name => {
+        OrderBy.win: 'Win',
+        OrderBy.loss: 'Loss',
+        OrderBy.pick: 'Synergy',
+        OrderBy.advantage: 'Advantage',
+        OrderBy.disadvantage: 'Disadvantage',
+      }[this];
 }
